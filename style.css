@@ -164,7 +164,7 @@ nav button {
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%);
-	width: 68.75%; /* 25% bigger than the previous 55% */
+	width: 82%; /* 25% bigger than the previous 55% */
 	aspect-ratio: 1 / 1;
 }
 
