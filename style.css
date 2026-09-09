@@ -415,7 +415,7 @@ nav button {
 
 @media (max-width: 600px) {
 	.flex-grid {
-		width: 92%;
+		width: 80%;
 		grid-template-columns: 1fr;
 		gap: 20px;
 	}
