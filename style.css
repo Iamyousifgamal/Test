@@ -1,9 +1,20 @@
+
 /* =========================================================
-   Base / Variables
+   1. Base / Reset
    ========================================================= */
 
 * {
+	margin: 0;
+	padding: 0;
 	box-sizing: border-box;
+	scroll-behavior: smooth;
+   scrollbar-width: thin;
+   scrollbar-color: var(--color-navy) transparent;
+}
+
+::selection {
+	background-color: var(--color-navy);
+	color: white;
 }
 
 html {
@@ -12,22 +23,27 @@ html {
 }
 
 body {
-	margin: 0;
 	width: 100%;
 	overflow-x: hidden;
 }
 
+
+/* =========================================================
+   2. Variables
+   ========================================================= */
+
 :root {
-	/* Colors */
+	/* ---------- Colors ---------- */
 	--color-navy: #1F3A70;
 	--color-navy-soft: rgba(31, 57, 112, 0.6);
 	--color-navy-faint: rgba(31, 58, 112, 0.8);
 	--color-navy-bg: rgba(31, 57, 112, 0.075);
+
 	--color-yellow-soft: rgba(255, 207, 0, 0.8);
 	--color-blue-light: #C0CDE7;
 	--color-white: #FFFFFF;
 
-	/* Newsletter */
+	/* ---------- Newsletter ---------- */
 	--color-newsletter-heading: #203D77;
 	--color-newsletter-text: #34558E;
 	--color-input-bg: #F3F4F8;
@@ -36,24 +52,28 @@ body {
 	--color-newsletter-btn-text: #183B78;
 	--color-placeholder: #9AA9C7;
 
-	/* Footer */
+	/* ---------- Footer ---------- */
 	--color-footer-bg: #243F78;
 
-	/* Typography */
+	/* ---------- Typography ---------- */
 	--font-heading: "Archivo Black", sans-serif;
 	--font-body: "Montserrat", sans-serif;
 
-	/* Layout */
+	/* ---------- Layout ---------- */
 	--page-width: 80%;
 	--mobile-page-width: 90%;
+
+	/* ---------- Components ---------- */
 	--button-radius: 25px;
 	--control-border: 0;
 }
 
 
 /* =========================================================
-   Shared Components
+   3. Shared Components
    ========================================================= */
+
+/* ---------- Shared Button Styles ---------- */
 
 nav button,
 .content button,
@@ -66,34 +86,43 @@ nav button,
 	cursor: pointer;
 }
 
-nav button,
-.content button {
-	padding-block: clamp(7px, 2.54vw, 10px);
-}
+
+/* ---------- Navigation Button ---------- */
 
 nav button {
+	padding-block: clamp(7px, 2.54vw, 10px);
+	padding-inline: clamp(15px, 6.36vw, 25px);
+
 	background-color: var(--color-navy);
 	color: var(--color-white);
+
 	font-size: clamp(14px, 4.07vw, 16px);
-	padding-inline: clamp(15px, 6.36vw, 25px);
 }
 
+
+/* ---------- Hero Button ---------- */
+
 .content button {
+	padding-block: clamp(7px, 2.54vw, 10px);
+	padding-inline: 30px;
+
 	background-color: var(--color-yellow-soft);
 	color: var(--color-navy);
+
 	font-size: clamp(20px, 1.944vw, 28px);
-	padding-inline: 30px;
+
 	align-self: flex-start;
 }
 
 
 /* =========================================================
-   Header / Navigation
+   4. Header / Navigation
    ========================================================= */
 
 nav {
 	width: var(--page-width);
 	margin: 32px auto;
+
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
@@ -103,6 +132,7 @@ nav ul {
 	display: flex;
 	align-items: center;
 	gap: 20px;
+
 	list-style: none;
 	padding: 0;
 	margin: 0;
@@ -117,6 +147,9 @@ nav ul a {
 	text-transform: uppercase;
 }
 
+
+/* ---------- Mobile Navigation ---------- */
+
 .nav-logo,
 .bottom-nav {
 	display: none;
@@ -127,6 +160,9 @@ nav ul a {
 	width: 100%;
 	height: auto;
 }
+
+
+/* ---------- Bottom Mobile Navigation ---------- */
 
 .bottom-nav {
 	position: fixed;
@@ -148,6 +184,7 @@ nav ul a {
 
 .bottom-nav-item {
 	flex: 1;
+
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -174,12 +211,18 @@ nav ul a {
 	font-weight: 700;
 }
 
-/*.bottom-nav-item--active {
-	background-color: var(--color-yellow-soft);*/
+
+/* ---------- Optional Active State ---------- */
+
+/*
+.bottom-nav-item--active {
+	background-color: var(--color-yellow-soft);
+}
+*/
 
 
 /* =========================================================
-   Hero
+   5. Hero Section
    ========================================================= */
 
 .hero-section {
@@ -191,8 +234,12 @@ nav ul a {
 	justify-content: space-between;
 }
 
+
+/* ---------- Hero Content ---------- */
+
 .content {
 	width: 40%;
+
 	display: flex;
 	flex-direction: column;
 	gap: clamp(16px, 2.22vw, 32px);
@@ -216,13 +263,15 @@ nav ul a {
 }
 
 
-/* Hero visual */
+/* ---------- Hero Visual ---------- */
 
 .hero-visual {
 	position: relative;
+
 	width: 40%;
-	display: flex;
 	min-width: 0;
+
+	display: flex;
 }
 
 .hero-visual-bg {
@@ -231,12 +280,17 @@ nav ul a {
 	height: auto;
 }
 
+
+/* ---------- Bagel Slider ---------- */
+
 .bagel-slider {
 	position: absolute;
 	top: 50%;
 	left: 50%;
+
 	width: 82.2%;
 	aspect-ratio: 1;
+
 	transform: translate(-50%, -55%);
 }
 
@@ -248,10 +302,16 @@ nav ul a {
 	height: 100%;
 
 	object-fit: contain;
+
 	opacity: 0;
 	transform: scale(1.06);
 
-	animation: bagel-cycle 15s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+	animation:
+		bagel-cycle
+		15s
+		cubic-bezier(0.65, 0, 0.35, 1)
+		infinite;
+
 	will-change: opacity, transform;
 }
 
@@ -266,6 +326,9 @@ nav ul a {
 .bagel-slide:nth-child(3) {
 	animation-delay: 10s;
 }
+
+
+/* ---------- Bagel Animation ---------- */
 
 @keyframes bagel-cycle {
 	0%,
@@ -288,17 +351,22 @@ nav ul a {
 
 
 /* =========================================================
-   Menu
+   6. Menu Section
    ========================================================= */
 
 .menu-section {
 	padding: 32px 0;
+
 	background-color: var(--color-navy-bg);
 }
+
+
+/* ---------- Menu Intro ---------- */
 
 .menu-intro {
 	width: var(--page-width);
 	margin: 0 auto;
+
 	text-align: center;
 }
 
@@ -320,15 +388,23 @@ nav ul a {
 	font-size: clamp(14px, 1.25vw, 18px);
 }
 
+
+/* ---------- Menu Button ---------- */
+
 .menu-section button {
 	display: block;
+
 	margin: 0 auto;
 	padding: 10px 30px;
 
 	background-color: var(--color-navy);
 	color: var(--color-white);
+
 	font-size: clamp(20px, 1.944vw, 28px);
 }
+
+
+/* ---------- Menu Grid ---------- */
 
 .flex-grid {
 	width: min(90%, 1200px);
@@ -339,29 +415,44 @@ nav ul a {
 	gap: clamp(15px, 2.5vw, 30px);
 }
 
+
+/* =========================================================
+   7. Menu Cards
+   ========================================================= */
+
 .card-flex {
 	position: relative;
+
 	width: 100%;
 	aspect-ratio: 368 / 317;
+
 	container-type: inline-size;
 }
 
 .card-flex img {
 	position: absolute;
+
 	top: 44.16%;
 	left: 49.55%;
+
 	width: 51.63cqw;
 	height: auto;
+
 	object-fit: contain;
 }
 
 .card {
 	position: relative;
+
 	width: 100%;
 	height: 100%;
+
 	border-radius: clamp(6px, 2.7cqw, 10px);
 	overflow: hidden;
 }
+
+
+/* ---------- Card Variants ---------- */
 
 .card-yellow {
 	background-color: var(--color-yellow-soft);
@@ -377,6 +468,9 @@ nav ul a {
 	background-color: var(--color-blue-light);
 	color: var(--color-navy);
 }
+
+
+/* ---------- Card Content ---------- */
 
 .card-content {
 	width: 60%;
@@ -405,6 +499,9 @@ nav ul a {
 	line-height: 1;
 }
 
+
+/* ---------- Card Badges ---------- */
+
 .badge,
 .signature-badge {
 	position: relative;
@@ -422,10 +519,11 @@ nav ul a {
 
 	position: absolute;
 	top: 50%;
-	transform: translateY(-50%);
 
 	width: 21.74cqw;
 	height: 1px;
+
+	transform: translateY(-50%);
 
 	background-color: currentColor;
 }
@@ -440,7 +538,7 @@ nav ul a {
 
 
 /* =========================================================
-   Newsletter
+   8. Newsletter
    ========================================================= */
 
 .newsletter {
@@ -450,6 +548,7 @@ nav ul a {
 
 	display: flex;
 	justify-content: center;
+
 	text-align: center;
 
 	font-family: var(--font-body);
@@ -460,10 +559,14 @@ nav ul a {
 	max-width: 1000px;
 }
 
+
+/* ---------- Newsletter Heading ---------- */
+
 .newsletter h2 {
 	margin: 0;
 
 	color: var(--color-newsletter-heading);
+
 	font-size: clamp(28px, 5vw, 40px);
 	font-weight: 800;
 	line-height: 1.1;
@@ -474,10 +577,14 @@ nav ul a {
 	margin: 7px 0 40px;
 
 	color: var(--color-newsletter-text);
+
 	font-size: clamp(14px, 2vw, 16px);
 	font-weight: 400;
 	line-height: 1.5;
 }
+
+
+/* ---------- Subscribe Form ---------- */
 
 .subscribe-form {
 	width: 100%;
@@ -490,20 +597,23 @@ nav ul a {
 
 	overflow: hidden;
 	border-radius: 40px;
+
 	background: var(--color-input-bg);
 }
 
 .subscribe-form input {
 	flex: 1;
 	min-width: 0;
+
 	height: 100%;
 	padding: 0 28px;
 
 	border: 0;
 	outline: none;
-	background: transparent;
 
+	background: transparent;
 	color: var(--color-newsletter-heading);
+
 	font-family: inherit;
 	font-size: 18px;
 }
@@ -520,15 +630,19 @@ nav ul a {
 
 	border: 0;
 	border-radius: 40px;
-	background: var(--color-accent-yellow);
 
+	background: var(--color-accent-yellow);
 	color: var(--color-newsletter-btn-text);
+
 	font-family: inherit;
 	font-size: clamp(22px, 3vw, 30px);
 	font-weight: 700;
+
 	cursor: pointer;
 
-	transition: background 0.2s ease, transform 0.2s ease;
+	transition:
+		background 0.2s ease,
+		transform 0.2s ease;
 }
 
 .subscribe-form button:hover {
@@ -539,10 +653,14 @@ nav ul a {
 	transform: scale(0.98);
 }
 
+
+/* ---------- Privacy ---------- */
+
 .privacy {
 	margin: 35px 0 0;
 
 	color: var(--color-newsletter-text);
+
 	font-size: clamp(13px, 2vw, 16px);
 	font-weight: 400;
 	line-height: 1.5;
@@ -550,15 +668,17 @@ nav ul a {
 
 
 /* =========================================================
-   Footer
+   9. Footer
    ========================================================= */
 
 .footer {
 	position: relative;
+
 	width: 100%;
 	min-height: 421px;
 
 	overflow: hidden;
+
 	background: var(--color-footer-bg);
 
 	font-family: var(--font-body);
@@ -570,14 +690,21 @@ nav ul a {
 
 	width: calc(100% - 80px);
 	max-width: 1076px;
+
 	margin: 0 auto;
 	padding: 82px 0 70px;
 
 	display: grid;
-	grid-template-columns: minmax(240px, 1.5fr) repeat(3, minmax(150px, 1fr));
+	grid-template-columns:
+		minmax(240px, 1.5fr)
+		repeat(3, minmax(150px, 1fr));
+
 	gap: 40px;
 	align-items: start;
 }
+
+
+/* ---------- Footer Brand ---------- */
 
 .footer-brand {
 	display: flex;
@@ -587,9 +714,11 @@ nav ul a {
 
 .footer-logo {
 	display: block;
+
 	width: 187px;
 	height: 28px;
 	max-width: 100%;
+
 	object-fit: contain;
 }
 
@@ -598,15 +727,20 @@ nav ul a {
 	margin: 24px 0 0;
 
 	color: var(--color-white);
+
 	font-size: 16px;
 	font-weight: 300;
 	line-height: 1.55;
 }
 
+
+/* ---------- Social Icons ---------- */
+
 .social-icons {
 	display: flex;
 	align-items: center;
 	gap: 34px;
+
 	margin-top: 47px;
 }
 
@@ -623,11 +757,16 @@ nav ul a {
 
 .social-icons img {
 	display: block;
+
 	width: 32px;
 	height: 32px;
+
 	object-fit: contain;
 	filter: saturate(50%);
 }
+
+
+/* ---------- Desktop Footer Columns ---------- */
 
 .footer-desktop-column {
 	display: flex;
@@ -640,6 +779,7 @@ nav ul a {
 	padding: 0;
 
 	color: var(--color-white);
+
 	font-size: 18px;
 	font-weight: 800;
 	line-height: 1;
@@ -647,13 +787,16 @@ nav ul a {
 
 .footer-desktop-column a {
 	display: block;
+
 	margin: 0 0 23px;
 	padding: 0;
 
 	color: var(--color-white);
+
 	font-size: 16px;
 	font-weight: 300;
 	line-height: 1.4;
+
 	text-decoration: none;
 }
 
@@ -661,17 +804,27 @@ nav ul a {
 	margin-bottom: 0;
 }
 
+
+/* ---------- Footer Hover ---------- */
+
 .footer-desktop-column a:hover,
 .footer-mobile-links a:hover {
 	opacity: 0.7;
 }
 
+
+/* ---------- Mobile Footer ---------- */
+
 .footer-mobile-menus {
 	display: none;
 }
 
+
+/* ---------- Footer Pattern ---------- */
+
 .footer-pattern {
 	position: absolute;
+
 	right: 0;
 	bottom: 0;
 	z-index: 1;
@@ -681,27 +834,38 @@ nav ul a {
 	height: auto;
 
 	display: block;
+
 	pointer-events: none;
 }
 
 
 /* =========================================================
-   Responsive: Tablet
+   10. Responsive — Tablet
+   1024px and below
    ========================================================= */
 
 @media (max-width: 1024px) {
 
+	/* ---------- Layout ---------- */
+
 	:root {
 		--page-width: 92%;
 	}
+
+
+	/* ---------- Menu Grid ---------- */
 
 	.flex-grid {
 		grid-template-columns: repeat(2, 1fr);
 		gap: 20px;
 	}
 
+
+	/* ---------- Footer ---------- */
+
 	.footer-container {
 		width: calc(100% - 60px);
+
 		padding-top: 60px;
 
 		grid-template-columns:
@@ -737,6 +901,9 @@ nav ul a {
 		width: 220px;
 	}
 
+
+	/* ---------- Newsletter ---------- */
+
 	.newsletter {
 		padding: 40px 24px;
 	}
@@ -748,11 +915,15 @@ nav ul a {
 
 
 /* =========================================================
-   Responsive: Mobile
-   Only 3 mobile breakpoints
+   11. Responsive — Mobile
+   700px and below
    ========================================================= */
 
 @media (max-width: 700px) {
+
+	/* =====================================================
+	   Header
+	   ===================================================== */
 
 	nav {
 		width: var(--mobile-page-width);
@@ -772,6 +943,11 @@ nav ul a {
 	.bottom-nav {
 		display: flex;
 	}
+
+
+	/* =====================================================
+	   Hero
+	   ===================================================== */
 
 	.hero-section {
 		width: var(--mobile-page-width);
@@ -802,9 +978,12 @@ nav ul a {
 	.content button {
 		width: 100%;
 		max-width: 100%;
+
 		margin: 0;
 		padding: 12px 24px;
+
 		font-size: clamp(18px, 4.5vw, 24px);
+
 		align-self: stretch;
 	}
 
@@ -815,6 +994,11 @@ nav ul a {
 	.bagel-slider {
 		width: 82.2%;
 	}
+
+
+	/* =====================================================
+	   Menu
+	   ===================================================== */
 
 	.menu-intro {
 		width: var(--mobile-page-width);
@@ -833,8 +1017,10 @@ nav ul a {
 	.menu-section button {
 		width: 92%;
 		max-width: 100%;
+
 		margin: 0 auto;
 		padding: 12px 24px;
+
 		font-size: clamp(19px, 5vw, 26px);
 	}
 
@@ -843,6 +1029,11 @@ nav ul a {
 		grid-template-columns: repeat(2, 1fr);
 		gap: 20px;
 	}
+
+
+	/* =====================================================
+	   Newsletter
+	   ===================================================== */
 
 	.newsletter {
 		min-height: auto;
@@ -864,6 +1055,11 @@ nav ul a {
 		max-width: 550px;
 	}
 
+
+	/* =====================================================
+	   Footer
+	   ===================================================== */
+
 	.footer {
 		min-height: auto;
 	}
@@ -871,6 +1067,7 @@ nav ul a {
 	.footer-container {
 		width: 100%;
 		max-width: 100%;
+
 		margin-bottom: 72px;
 		padding: 50px 20px 55px;
 
@@ -881,7 +1078,9 @@ nav ul a {
 
 	.footer-brand {
 		align-items: center;
+
 		margin-bottom: 35px;
+
 		text-align: center;
 	}
 
@@ -893,14 +1092,17 @@ nav ul a {
 	.footer-description {
 		max-width: 400px;
 		margin: 20px auto 0;
+
 		font-size: clamp(13px, 3.5vw, 15px);
 		line-height: 1.6;
+
 		text-align: center;
 	}
 
 	.social-icons {
 		justify-content: center;
 		gap: 25px;
+
 		margin-top: 28px;
 	}
 
@@ -920,11 +1122,16 @@ nav ul a {
 		width: 100%;
 		margin: 0;
 		padding: 0;
+
 		border: 0;
 	}
 
+
+	/* ---------- Footer Accordion ---------- */
+
 	.footer-mobile-column summary {
 		position: relative;
+
 		width: 100%;
 		min-height: 60px;
 		padding: 16px 50px 16px 20px;
@@ -934,10 +1141,12 @@ nav ul a {
 		justify-content: center;
 
 		color: var(--color-white);
+
 		font-family: var(--font-body);
 		font-size: clamp(15px, 4vw, 17px);
 		font-weight: 800;
 		line-height: 1;
+
 		text-align: center;
 
 		cursor: pointer;
@@ -960,6 +1169,7 @@ nav ul a {
 		justify-content: center;
 
 		color: var(--color-white);
+
 		font-size: 23px;
 		font-weight: 300;
 		line-height: 1;
@@ -971,6 +1181,7 @@ nav ul a {
 
 	.footer-mobile-column[open] .dropdown-icon::after {
 		content: "−";
+
 		font-size: 23px;
 		font-weight: 300;
 	}
@@ -990,14 +1201,17 @@ nav ul a {
 
 	.footer-mobile-links a {
 		display: block;
+
 		width: 100%;
 		padding: 9px 0;
 
 		color: var(--color-white);
+
 		font-family: var(--font-body);
 		font-size: clamp(13px, 3.5vw, 15px);
 		font-weight: 300;
 		line-height: 1.5;
+
 		text-align: center;
 		text-decoration: none;
 	}
@@ -1009,10 +1223,13 @@ nav ul a {
 
 
 /* =========================================================
-   Responsive: Small Mobile
+   12. Responsive — Small Mobile
+   600px and below
    ========================================================= */
 
 @media (max-width: 600px) {
+
+	/* ---------- Menu ---------- */
 
 	.menu-section {
 		padding: 28px 0;
@@ -1020,16 +1237,23 @@ nav ul a {
 
 	.menu-section button {
 		width: 90%;
-		padding: clamp(12px, 3.5vw, 18px)
+
+		padding:
+			clamp(12px, 3.5vw, 18px)
 			clamp(20px, 6vw, 25px);
 	}
 
 	.flex-grid {
 		width: 92%;
+
 		grid-template-columns: 1fr;
 		gap: 20px;
+
 		margin: 32px auto;
 	}
+
+
+	/* ---------- Newsletter ---------- */
 
 	.newsletter {
 		padding: 35px 20px;
@@ -1066,14 +1290,17 @@ nav ul a {
 	.subscribe-form button {
 		width: 100%;
 		min-width: 0;
+
 		flex: none;
 		height: 58px;
 	}
 
 	.subscribe-form input {
 		padding: 0 20px;
+
 		border-radius: 30px;
 		background: var(--color-input-bg);
+
 		font-size: 16px;
 	}
 
@@ -1088,6 +1315,9 @@ nav ul a {
 		font-size: 13px;
 	}
 
+
+	/* ---------- Footer ---------- */
+
 	.footer-container {
 		padding: 45px 20px 50px;
 	}
@@ -1095,10 +1325,15 @@ nav ul a {
 
 
 /* =========================================================
-   Responsive: Very Small Mobile
+   13. Responsive — Very Small Mobile
+   480px and below
    ========================================================= */
 
 @media (max-width: 480px) {
+
+	/* =====================================================
+	   Header
+	   ===================================================== */
 
 	nav {
 		margin-top: 20px;
@@ -1127,6 +1362,11 @@ nav ul a {
 		font-size: 11px;
 	}
 
+
+	/* =====================================================
+	   Hero
+	   ===================================================== */
+
 	.hero-section {
 		width: 92%;
 		gap: 36px;
@@ -1145,6 +1385,11 @@ nav ul a {
 		font-size: 18px;
 		padding: 12px 20px;
 	}
+
+
+	/* =====================================================
+	   Menu
+	   ===================================================== */
 
 	.menu-intro {
 		width: 92%;
@@ -1169,6 +1414,11 @@ nav ul a {
 		gap: 18px;
 		margin-top: 28px;
 	}
+
+
+	/* =====================================================
+	   Newsletter
+	   ===================================================== */
 
 	.newsletter {
 		padding: 30px 16px;
@@ -1202,6 +1452,11 @@ nav ul a {
 	.privacy {
 		font-size: 12px;
 	}
+
+
+	/* =====================================================
+	   Footer
+	   ===================================================== */
 
 	.footer-container {
 		padding: 42px 16px 45px;
